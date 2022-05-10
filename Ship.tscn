@@ -16,7 +16,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Ship" type="Area2D"]
+[node name="Ship" type="Area2D" groups=["ship"]]
 script = ExtResource( 4 )
 
 [node name="HitZone" type="CollisionShape2D" parent="."]
@@ -25,10 +25,12 @@ shape = SubResource( 1 )
 [node name="Ship" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "ship"
+frame = 2
 playing = true
 
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
 
+[connection signal="area_entered" from="." to="." method="_on_Ship_area_entered"]
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
